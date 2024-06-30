@@ -8,8 +8,9 @@ interface IUser {
   username: string;
   goals: any[];
   last_events: any[];
-  fav_events: any[];
+  fav_event: any;
   missions: number;
+  photo:string;
 }
 
 const userSchema = new Schema<IUser>({
@@ -20,7 +21,7 @@ const userSchema = new Schema<IUser>({
   username: { type: String, required: true, unique: true },
   goals: { type: [], default: [] },
   last_events: { type: [Schema.Types.ObjectId], default: [] },
-  fav_events: { type: [Schema.Types.ObjectId], default: [] },
+  fav_event: { type: Schema.Types.ObjectId, default: ""},
   missions: {type: Number},
 });
 

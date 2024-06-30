@@ -34,9 +34,10 @@ export const createUser = async (req: Request, res: Response) => {
       description,
       username,
       goals,
-      fav_events,
+      fav_event,
       last_events,
-      missions
+      missions,
+      photo
     } = req.body;
     const newUser: IUser = {
       name,
@@ -45,9 +46,10 @@ export const createUser = async (req: Request, res: Response) => {
       description,
       username,
       goals,
-      fav_events,
+      fav_event,
       last_events,
-      missions
+      missions,
+      photo
     };
     const createdUser = await UserService.createUser(newUser);
     res.status(201).json(createdUser);
