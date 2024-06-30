@@ -1,3 +1,4 @@
+import { IPVersion } from "net";
 import { IEvent } from "../models/event";
 import EventRepository from "../repositories/eventRepository";
 
@@ -13,4 +14,8 @@ const createEvent = async(event: IEvent): Promise<IEvent> => {
   return EventRepository.create(event);
 }
 
-export default { getAllEvents, getEventById, createEvent };
+const updateEvent = async(idEvent: string, updateEvent: IEvent) => {
+  return EventRepository.update(idEvent, updateEvent);
+}
+
+export default { getAllEvents, getEventById, createEvent, updateEvent };

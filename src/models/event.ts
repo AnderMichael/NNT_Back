@@ -9,6 +9,7 @@ interface IEvent {
   contact: string;
   sponsor: string;
   organizer: string;
+  missions: any;
 };
 
 const eventSchema = new Schema<IEvent>({
@@ -20,6 +21,7 @@ const eventSchema = new Schema<IEvent>({
   contact: { type: String, required: true },
   sponsor: { type: String, required: true },
   organizer: { type: String, required: true },
+  missions: { type: JSON, required: true }
 });
 
 const Event = model<IEvent>('Event', eventSchema);
