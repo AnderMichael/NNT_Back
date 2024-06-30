@@ -13,4 +13,15 @@ const createUser = async (user: IUser): Promise<IUser> => {
   return UserRepository.create(user);
 };
 
-export default { getAllUsers, getUserById, createUser };
+const updateUser = (id: string, user: Partial<IUser>): Promise<IUser | null> => {
+    return UserRepository.update(id, user);
+  };
+
+const getRanking =  async (): Promise<IUser[]>=> {
+    try {
+      return await UserRepository.findRankedByPoints();
+    } catch (error) {
+      throw new Error(`Error al obtener el ranking de usuarios: ${error}`);
+    }
+  }
+export default { getAllUsers, getUserById, createUser, updateUser, getRanking };
