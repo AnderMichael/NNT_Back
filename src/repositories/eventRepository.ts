@@ -13,4 +13,15 @@ const create = async (event: IEvent): Promise<IEvent> => {
   return newEvent.save();
 };
 
-export default { findAll, findById, create };
+const update = async (eventId: string, updateData: IEvent) => {
+  try {
+    const updatedEvent = await Event.findByIdAndUpdate(eventId, updateData)
+    console.log(updatedEvent)
+    console.log("Succesfully updated event")
+    return updatedEvent
+  } catch (error) {
+    console.log("Failed to update event", error)
+  }
+}
+
+export default { findAll, findById, create, update };

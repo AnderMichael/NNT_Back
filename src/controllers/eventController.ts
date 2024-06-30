@@ -3,10 +3,10 @@ import EventService from "../services/eventService";
 import { IEvent } from "../models/event";
 
 export const getEvents = async (req: Request, res: Response) => {
-  try{
+  try {
     const events = await EventService.getAllEvents();
     res.json(events);
-  }catch(error){
+  } catch (error) {
     console.log("🚀 ~ getEvents ~ error:", error);
     res.status(500).json({ error: "Error al obtener los eventos" });
   }
@@ -29,8 +29,9 @@ export const getEventById = async (req: Request, res: Response) => {
 export const createEvent = async (req: Request, res: Response) => {
   console.log("🚀 ~ createEvent ~ req:", req.body)
   try {
-    const { date, hour, direction, price, description, contact, sponsor, organizer } = req.body;
-    const newEvent: IEvent = { date, hour, direction, price, description, contact, sponsor, organizer };
+    const { date, hour, direction, price, description, contact, sponsor, organizer, missions } = req.body;
+    console.log(req.body, "estoy vacio")
+    const newEvent: IEvent = { date, hour, direction, price, description, contact, sponsor, organizer, missions };
     const createdEvent = await EventService.createEvent(newEvent);
     res.status(201).json(createdEvent);
   } catch (error) {
@@ -38,3 +39,18 @@ export const createEvent = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error al crear el evento" });
   }
 };
+
+export const updateEvent = async (req: Request, res: Response) => {
+  console.log("~ updateEvent ~ req:", req.body)
+  try {
+    const eventId = req.params.id
+    const { ...updateData } = req.body;
+    const changedEvent = { ...updateData };
+    const updatedEvent = await EventService.updateEvent(eventId, changedEvent);
+    res.status(201).json(updatedEvent);
+  } catch (error) {
+    console.log("~ updateEvent ~ error:", error);
+    res.status(500).json({ error: "Error al actualizar un evento" })
+
+  }
+}
