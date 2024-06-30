@@ -4,11 +4,13 @@ import eventRoutes from './routes/eventRoutes';
 import db_initialization from './config/mongoInit';
 import { server_port } from './config/vars';
 import badgeRoutes from './routes/badgeRoutes';
+import cors from 'cors';
 
 const app = express();
 const port = server_port;
 
 app.use(express.json());
+app.use(cors());
 
 db_initialization();
 
