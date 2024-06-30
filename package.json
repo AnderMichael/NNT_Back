@@ -4,8 +4,9 @@
   "description": "Backend  del proyecto de la hackaton BCP",
   "main": "server.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
-    "build": "tsc"
+    "start": "node dist/server.js",
+    "build": "tsc",
+    "dev": "ts-node src/server.ts"
   },
   "keywords": [],
   "author": "",
